@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-
-
->>>>>>> beadb5aea5fbd0edf886f76db029ddb6e3968d50
 ##' Plot NDVI data
 ##'
 ##' @param dat  dataframe that contains columns "age" and "NDVI"
