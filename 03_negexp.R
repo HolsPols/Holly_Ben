@@ -60,3 +60,5 @@ fit.negexpS.MLE <- function(dat,par){
   ## fit by numerical optimization
   optim(par, fn = lnL.negexpS, dat=dat, control = list(maxit = 1000))
 }
+
+#
