@@ -1,33 +1,3 @@
----
-title: "04_Master.Rmd"
-output: html_document
-date: "2023-08-01"
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
 
 ---
 title: "Master script for postfire analysis"
@@ -63,7 +33,7 @@ plot.NDVI(dat)
 
 Q1: This plot suggests that Fynbos greenness (NDVI) as observed from satellite saturates with time since fire. Why do you think it saturates rather than increasing linearly with time?
 
->*Answer 1:*
+>*Answer 1:* The vegetation recovers over time, increasing in 'green-ness' as measured by NDVI rapidly after a fire but reaches a maximum level of green-ness ~ a saturation level where the vegetation has completely recovered. 
 
 <br>
 
@@ -130,7 +100,9 @@ Lots more parameters...
 
 Q2: How do the estimates for the common parameters compare?
 
->*Answer 2:*
+>*Answer 2:* Estimates for alpha (NDVI time at 0) and gamma (max average increase in NDVI), are very similar between the simpler and full model.
+Lambda (the rate of increase of NDVI) shows a bit more of a difference between the simple model (average increase in NDVI) vs the full model, which takes seasonality into account; where lamda of the simpler model equal to 1.17687 and the full model equal to 0.989154. Becauase the full model incorporates seasonality, the decrease in NDVI during the dry seasons result in a smaller lambda value (rate of increase) for the full model relative to the simpler model. The standard errors show the same trend, with similar values for alpha and gamma and lower values in the full model for lambda. 
+
 
 <br>
 
@@ -148,11 +120,11 @@ anova(fit_negexp, fit_negexpS)
 
 Q3: Which model is better?
 
->*Answer 3:*
+>*Answer 3:* The model that minimizes the residual sum of squares is better, in this case Model 2 - the full model. 
 
 Q4: How many degrees of freedom are there in this ANOVA and why (i.e. what are they)?
 
->*Answer 4:*
+>*Answer 4:* Degrees of freedom are the number of independent values in an analysis. In this case there are 2 degrees of freedom in the ANOVA because 2 is the number of differnces in independent values between the models. 
 
 <br>
 
@@ -245,7 +217,7 @@ AIC_simple - AIC_full
 
 Q5: Is there a preferred model and if so, which one?
 
->*Answer 5:*
+>*Answer 5:* Yes, model 2 - the full model is the preferred model as it has the lowest AIC value. 
 
 <br>
 
@@ -263,8 +235,7 @@ You'll notice that these are completely different to the AICs for the MLE models
 
 Q6: Why is it not okay to compare the AIC of these NLS models with the AIC of the MLE models? Hint: type `?AIC` into the R console and do some reading.
 
->*Answer 6:*
+>*Answer 6:* AIC values are calculated under the assumption that the log likelihood has been maximized. In Maximum Likelihood Estimation this assumption is met, but under Non-Linear Least Squares it is not, and so while AIC values can still be computed for NLS models they should not be compared or interpreted. 
 
 <br>
 
-#
